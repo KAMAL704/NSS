@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title>National Service Scheme logo</title>
+  <desc>NSS wheel emblem with Hindi and English National Service Scheme lettering.</desc>
+  <defs>
+    <path id="topArc" d="M 74 256 A 182 182 0 0 1 438 256" fill="none" />
+    <path id="bottomArc" d="M 438 256 A 182 182 0 0 1 74 256" fill="none" />
+  </defs>
+  <circle cx="256" cy="256" r="249" fill="#171f91" />
+  <circle cx="256" cy="256" r="193" fill="#fff" />
+  <circle cx="256" cy="256" r="181" fill="#171f91" />
+  <circle cx="256" cy="256" r="157" fill="#fff" />
+  <g fill="#e51b2a">
+    <path d="M256 111c17 0 31 14 31 31v54c0 9-5 18-13 23-7 5-16 7-25 5-14-3-24-15-24-29v-53c0-17 14-31 31-31Z" />
+    <path d="M401 256c0 17-14 31-31 31h-54c-9 0-18-5-23-13-5-7-7-16-5-25 3-14 15-24 29-24h53c17 0 31 14 31 31Z" />
+    <path d="M256 401c-17 0-31-14-31-31v-54c0-9 5-18 13-23 7-5 16-7 25-5 14 3 24 15 24 29v53c0 17-14 31-31 31Z" />
+    <path d="M111 256c0-17 14-31 31-31h54c9 0 18 5 23 13 5 7 7 16 5 25-3 14-15 24-29 24h-53c-17 0-31-14-31-31Z" />
+    <path d="M358 154c12 12 12 32 0 44l-38 38c-7 7-17 10-27 7-9-2-17-10-19-19-3-10 0-20 7-27l38-38c12-12 32-12 44 0Z" />
+    <path d="M358 358c-12 12-32 12-44 0l-38-38c-7-7-10-17-7-27 2-9 10-17 19-19 10-3 20 0 27 7l38 38c12 12 12 32 0 44Z" />
+    <path d="M154 358c-12-12-12-32 0-44l38-38c7-7 17-10 27-7 9 2 17 10 19 19 3 10 0 20-7 27l-38 38c-12 12-32 12-44 0Z" />
+    <path d="M154 154c12-12 32-12 44 0l38 38c7 7 10 17 7 27-2 9-10 17-19 19-10 3-20 0-27-7l-38-38c-12-12-12-32 0-44Z" />
+  </g>
+  <circle cx="256" cy="256" r="34" fill="#e51b2a" />
+  <text font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#fff" letter-spacing="1.5">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">राष्ट्रीय सेवा योजना</textPath>
+  </text>
+  <text font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#fff" letter-spacing="1.3">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">NATIONAL SERVICE SCHEME</textPath>
+  </text>
+</svg>
