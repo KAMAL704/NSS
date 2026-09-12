@@ -190,11 +190,14 @@ if (homeSlider) {
   );
   const previousButton = homeSlider.querySelector('[data-slider-prev]');
   const nextButton = homeSlider.querySelector('[data-slider-next]');
+  const toggleButton = homeSlider.querySelector('[data-slider-toggle]');
   const currentNumber = homeSlider.querySelector('[data-slide-current]');
+  const status = homeSlider.querySelector('[data-slider-status]');
 
   let currentSlide = 0;
   let sliderTimer = null;
   let touchStartX = 0;
+  let autoplayPaused = false;
 
   function showSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
@@ -207,10 +210,15 @@ if (homeSlider) {
       const active = dotIndex === currentSlide;
       dot.classList.toggle('is-active', active);
       dot.setAttribute('aria-selected', String(active));
+      dot.setAttribute('aria-current', active ? 'true' : 'false');
     });
 
     if (currentNumber) {
       currentNumber.textContent = String(currentSlide + 1).padStart(2, '0');
+    }
+
+    if (status) {
+      status.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
     }
   }
 
@@ -222,7 +230,7 @@ if (homeSlider) {
   }
 
   function startSlider() {
-    if (prefersReduced || slides.length < 2) {
+    if (prefersReduced || autoplayPaused || slides.length < 2) {
       return;
     }
 
@@ -245,6 +253,22 @@ if (homeSlider) {
   previousButton?.addEventListener('click', previousSlide);
   nextButton?.addEventListener('click', nextSlide);
 
+  toggleButton?.addEventListener('click', () => {
+    autoplayPaused = !autoplayPaused;
+    toggleButton.textContent = autoplayPaused ? '▶' : 'Ⅱ';
+    toggleButton.setAttribute('aria-pressed', String(autoplayPaused));
+    toggleButton.setAttribute(
+      'aria-label',
+      autoplayPaused ? 'Start automatic slides' : 'Pause automatic slides'
+    );
+
+    if (autoplayPaused) {
+      stopSlider();
+    } else {
+      startSlider();
+    }
+  });
+
   dots.forEach((dot) => {
     dot.addEventListener('click', () => {
       showSlide(Number(dot.dataset.sliderDot));
@@ -256,6 +280,14 @@ if (homeSlider) {
   homeSlider.addEventListener('mouseleave', startSlider);
   homeSlider.addEventListener('focusin', stopSlider);
   homeSlider.addEventListener('focusout', startSlider);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopSlider();
+    } else {
+      startSlider();
+    }
+  });
 
   homeSlider.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowLeft') {
