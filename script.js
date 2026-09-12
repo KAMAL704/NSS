@@ -36,7 +36,9 @@ if ('IntersectionObserver' in window) {
 const progress = document.querySelector('.scroll-progress');
 
 function updateScrollProgress() {
-  if (!progress) return;
+  if (!progress) {
+    return;
+  }
 
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const percentage = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
@@ -54,7 +56,9 @@ if (!prefersReduced) {
       const rect = parallaxRoot.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
-      parallaxRoot.style.transform = `perspective(900px) rotateX(${-y * 2}deg) rotateY(${x * 2}deg)`;
+
+      parallaxRoot.style.transform =
+        `perspective(900px) rotateX(${-y * 2}deg) rotateY(${x * 2}deg)`;
     });
 
     parallaxRoot.addEventListener('pointerleave', () => {
@@ -67,7 +71,9 @@ if (!prefersReduced) {
       const rect = card.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `translate(${x * 8}px, ${y * 8}px) rotate(${x * 3}deg)`;
+
+      card.style.transform =
+        `translate(${x * 8}px, ${y * 8}px) rotate(${x * 3}deg)`;
     });
 
     card.addEventListener('pointerleave', () => {
@@ -81,9 +87,11 @@ document.querySelectorAll('[data-count]').forEach((element) => {
   let animated = false;
 
   const animateCounter = () => {
-    if (animated) return;
-    animated = true;
+    if (animated) {
+      return;
+    }
 
+    animated = true;
     const duration = prefersReduced ? 0 : 1100;
     const start = performance.now();
 
@@ -92,9 +100,12 @@ document.querySelectorAll('[data-count]').forEach((element) => {
         ? 1
         : Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progressValue, 3);
+
       element.textContent = Math.floor(eased * target);
 
-      if (progressValue < 1) requestAnimationFrame(tick);
+      if (progressValue < 1) {
+        requestAnimationFrame(tick);
+      }
     };
 
     requestAnimationFrame(tick);
@@ -107,6 +118,7 @@ document.querySelectorAll('[data-count]').forEach((element) => {
         observer.disconnect();
       }
     });
+
     counterObserver.observe(element);
   } else {
     animateCounter();
@@ -115,35 +127,174 @@ document.querySelectorAll('[data-count]').forEach((element) => {
 
 window.addEventListener(
   'scroll',
-  () => document.documentElement.style.setProperty('--scrollY', `${window.scrollY * 0.04}px`),
+  () => {
+    document.documentElement.style.setProperty(
+      '--scrollY',
+      `${window.scrollY * 0.04}px`
+    );
+  },
   { passive: true }
 );
 
-/* Use the supplied NSS JPEG as the shared visible logo. */
+/* Always use the supplied NSS JPEG as the shared visible logo. */
 document.querySelectorAll('.brand img').forEach((logo) => {
   logo.src = 'assets/logo.jpeg';
   logo.removeAttribute('srcset');
   logo.alt = 'NSS SLIET official logo';
 });
 
-/* Load one shared stylesheet so every page gets the same social dock. */
+/* Shared social links. */
 const socialStylesheet = document.createElement('link');
 socialStylesheet.rel = 'stylesheet';
 socialStylesheet.href = 'css/social-links.css';
 document.head.appendChild(socialStylesheet);
 
-/* Shared NSS SLIET social links on every page. */
 const socialDock = document.createElement('div');
 socialDock.className = 'nss-social-dock';
 socialDock.setAttribute('aria-label', 'NSS SLIET social links');
 socialDock.innerHTML = `
   <span class="nss-social-label">NSS SLIET</span>
-  <a href="https://www.instagram.com/nss_sliet/" target="_blank" rel="noopener" aria-label="NSS SLIET Instagram">
+  <a
+    href="https://www.instagram.com/nss_sliet/"
+    target="_blank"
+    rel="noopener"
+    aria-label="NSS SLIET Instagram"
+  >
     Instagram ↗
   </a>
-  <a href="https://www.linkedin.com/company/official-sliet/" target="_blank" rel="noopener" aria-label="SLIET LinkedIn">
+  <a
+    href="https://www.linkedin.com/company/official-sliet/"
+    target="_blank"
+    rel="noopener"
+    aria-label="SLIET LinkedIn"
+  >
     LinkedIn ↗
   </a>
 `;
 
 document.body.appendChild(socialDock);
+
+/*
+ * NSS SLIET homepage photo carousel.
+ * The carousel follows the institutional photo-slider pattern requested
+ * for the front page and supports autoplay, arrows, dots and touch swipe.
+ */
+const homeSlider = document.querySelector('.nss-home-slider');
+
+if (homeSlider) {
+  const slides = Array.from(
+    homeSlider.querySelectorAll('.nss-home-slide')
+  );
+  const dots = Array.from(
+    homeSlider.querySelectorAll('[data-slider-dot]')
+  );
+  const previousButton = homeSlider.querySelector('[data-slider-prev]');
+  const nextButton = homeSlider.querySelector('[data-slider-next]');
+  const currentNumber = homeSlider.querySelector('[data-slide-current]');
+
+  let currentSlide = 0;
+  let sliderTimer = null;
+  let touchStartX = 0;
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle('is-active', slideIndex === currentSlide);
+    });
+
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === currentSlide;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', String(active));
+    });
+
+    if (currentNumber) {
+      currentNumber.textContent = String(currentSlide + 1).padStart(2, '0');
+    }
+  }
+
+  function stopSlider() {
+    if (sliderTimer) {
+      window.clearInterval(sliderTimer);
+      sliderTimer = null;
+    }
+  }
+
+  function startSlider() {
+    if (prefersReduced || slides.length < 2) {
+      return;
+    }
+
+    stopSlider();
+    sliderTimer = window.setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5500);
+  }
+
+  function previousSlide() {
+    showSlide(currentSlide - 1);
+    startSlider();
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+    startSlider();
+  }
+
+  previousButton?.addEventListener('click', previousSlide);
+  nextButton?.addEventListener('click', nextSlide);
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      showSlide(Number(dot.dataset.sliderDot));
+      startSlider();
+    });
+  });
+
+  homeSlider.addEventListener('mouseenter', stopSlider);
+  homeSlider.addEventListener('mouseleave', startSlider);
+  homeSlider.addEventListener('focusin', stopSlider);
+  homeSlider.addEventListener('focusout', startSlider);
+
+  homeSlider.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+      previousSlide();
+    }
+
+    if (event.key === 'ArrowRight') {
+      nextSlide();
+    }
+  });
+
+  homeSlider.addEventListener(
+    'touchstart',
+    (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  homeSlider.addEventListener(
+    'touchend',
+    (event) => {
+      const touchEndX = event.changedTouches[0].clientX;
+      const distance = touchEndX - touchStartX;
+
+      if (Math.abs(distance) < 45) {
+        return;
+      }
+
+      if (distance > 0) {
+        previousSlide();
+      } else {
+        nextSlide();
+      }
+    },
+    { passive: true }
+  );
+
+  homeSlider.tabIndex = 0;
+  showSlide(0);
+  startSlider();
+}
