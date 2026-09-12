@@ -119,27 +119,31 @@ window.addEventListener(
   { passive: true }
 );
 
-/*
- * Shared NSS SLIET branding.
- * Every page uses the supplied JPEG emblem for a consistent logo.
- */
+/* Use the supplied NSS JPEG as the shared visible logo. */
 document.querySelectorAll('.brand img').forEach((logo) => {
   logo.src = 'assets/logo.jpeg';
   logo.removeAttribute('srcset');
   logo.alt = 'NSS SLIET official logo';
 });
 
-/*
- * Shared social links.
- * This small dock appears on every page without duplicating markup in each HTML file.
- */
+/* Load one shared stylesheet so every page gets the same social dock. */
+const socialStylesheet = document.createElement('link');
+socialStylesheet.rel = 'stylesheet';
+socialStylesheet.href = 'css/social-links.css';
+document.head.appendChild(socialStylesheet);
+
+/* Shared NSS SLIET social links on every page. */
 const socialDock = document.createElement('div');
 socialDock.className = 'nss-social-dock';
 socialDock.setAttribute('aria-label', 'NSS SLIET social links');
 socialDock.innerHTML = `
   <span class="nss-social-label">NSS SLIET</span>
-  <a href="https://www.instagram.com/nss_sliet/" target="_blank" rel="noopener" aria-label="NSS SLIET Instagram">Instagram ↗</a>
-  <a href="https://www.linkedin.com/company/official-sliet/" target="_blank" rel="noopener" aria-label="SLIET LinkedIn">LinkedIn ↗</a>
+  <a href="https://www.instagram.com/nss_sliet/" target="_blank" rel="noopener" aria-label="NSS SLIET Instagram">
+    Instagram ↗
+  </a>
+  <a href="https://www.linkedin.com/company/official-sliet/" target="_blank" rel="noopener" aria-label="SLIET LinkedIn">
+    LinkedIn ↗
+  </a>
 `;
 
 document.body.appendChild(socialDock);
