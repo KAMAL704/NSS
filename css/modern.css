@@ -1,0 +1,136 @@
+:root {
+  --nss-glow: rgba(121, 201, 74, 0.3);
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 8% 18%, rgba(121, 201, 74, 0.2), transparent 22%),
+    radial-gradient(circle at 92% 32%, rgba(199, 255, 91, 0.15), transparent 25%),
+    linear-gradient(180deg, #f8fff5 0%, #e8f6e5 52%, #d7ecd8 100%);
+}
+
+.page-leaves {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-leaves span {
+  position: absolute;
+  font-size: clamp(20px, 3vw, 42px);
+  opacity: 0.16;
+  filter: blur(0.2px);
+  animation: leafFloat 16s ease-in-out infinite;
+}
+
+.page-leaves span:nth-child(1) { left: 4%; top: 22%; }
+.page-leaves span:nth-child(2) { right: 6%; top: 14%; animation-delay: -4s; }
+.page-leaves span:nth-child(3) { left: 12%; bottom: 14%; animation-delay: -8s; }
+.page-leaves span:nth-child(4) { right: 16%; bottom: 24%; animation-delay: -11s; }
+.page-leaves span:nth-child(5) { left: 48%; top: 8%; animation-delay: -2s; }
+
+@keyframes leafFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-8deg); }
+  50% { transform: translate3d(24px, -30px, 0) rotate(12deg); }
+}
+
+.immersive-hero {
+  min-height: calc(100vh - 78px);
+  background:
+    radial-gradient(circle at 76% 48%, rgba(121, 201, 74, 0.2), transparent 22%),
+    linear-gradient(125deg, rgba(235, 249, 229, 0.94), rgba(202, 234, 207, 0.72));
+}
+
+.hero-art {
+  transform-style: preserve-3d;
+}
+
+.hero-center img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin: 0 auto 8px;
+}
+
+.leaf-orbit {
+  position: absolute;
+  z-index: 4;
+  font-size: 30px;
+  filter: drop-shadow(0 8px 12px rgba(7, 59, 34, 0.16));
+  animation: leafOrbit 9s linear infinite;
+}
+
+.leaf-orbit-one { animation-delay: -2s; }
+.leaf-orbit-two { animation-delay: -6s; }
+
+@keyframes leafOrbit {
+  from { transform: rotate(0deg) translateX(235px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(235px) rotate(-360deg); }
+}
+
+.hero-card,
+.activity,
+.social-card,
+.person,
+.feature {
+  will-change: transform;
+}
+
+.activity:hover,
+.social-card:hover,
+.person:hover {
+  transform: translateY(-10px) rotate(-0.5deg);
+}
+
+.marquee {
+  box-shadow: 0 12px 30px rgba(7, 59, 34, 0.08);
+}
+
+.dark-section {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(121, 201, 74, 0.16), transparent 28%),
+    linear-gradient(135deg, #04160c, #0b4a2b 62%, #12613a);
+}
+
+.join {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(199, 255, 91, 0.18), transparent 25%),
+    linear-gradient(125deg, #052e1b, #16804a);
+}
+
+.quote {
+  position: relative;
+}
+
+.quote::before,
+.quote::after {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border: 1px solid rgba(25, 91, 56, 0.12);
+  border-radius: 50%;
+  animation: spin 25s linear infinite;
+}
+
+.quote::before { left: -80px; top: 15%; }
+.quote::after { right: -80px; bottom: 10%; animation-direction: reverse; }
+
+@media (max-width: 900px) {
+  .leaf-orbit { display: none; }
+}
+
+@media (max-width: 560px) {
+  .page-leaves span { opacity: 0.1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-leaves span,
+  .leaf-orbit,
+  .quote::before,
+  .quote::after {
+    animation: none;
+  }
+}
