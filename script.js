@@ -1,14 +1,120 @@
-const menu=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');if(menu&&nav){menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.setAttribute('aria-expanded',nav.classList.contains('open'))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')))}
+const menu = document.querySelector('.menu-btn');
+const nav = document.querySelector('.nav');
 
-const items=document.querySelectorAll('.reveal');const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});items.forEach(el=>io.observe(el));
+if (menu && nav) {
+  menu.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menu.setAttribute('aria-expanded', String(open));
+  });
 
-const progress=document.querySelector('.scroll-progress');const updateScroll=()=>{if(progress){const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=`${max>0?(window.scrollY/max)*100:0}%`}};window.addEventListener('scroll',updateScroll,{passive:true});updateScroll();
-
-const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!prefersReduced){
- document.querySelectorAll('.hero-card,.hero-center,.orbit').forEach((el,i)=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;el.style.transition='transform .15s ease';el.style.transform=`translate(${x*10}px,${y*10}px) ${i===0?'rotate(-5deg)':i===1?'rotate(5deg)':''}`});el.addEventListener('pointerleave',()=>{el.style.transition='transform .6s ease';el.style.transform=''})});
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => nav.classList.remove('open'));
+  });
 }
 
-document.querySelectorAll('[data-count]').forEach(el=>{const target=Number(el.dataset.count);let done=false;const counter=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!done){done=true;const start=performance.now();const tick=now=>{const p=Math.min((now-start)/1100,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*target);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick);counter.disconnect()}});counter.observe(el)});
+const revealItems = document.querySelectorAll('.reveal');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-window.addEventListener('scroll',()=>document.documentElement.style.setProperty('--scrollY',`${window.scrollY*.04}px`),{passive:true});
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('visible'));
+}
+
+const progress = document.querySelector('.scroll-progress');
+
+function updateScrollProgress() {
+  if (!progress) return;
+
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const percentage = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+  progress.style.width = `${percentage}%`;
+}
+
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+updateScrollProgress();
+
+if (!prefersReduced) {
+  const parallaxRoot = document.querySelector('[data-parallax-root]');
+
+  if (parallaxRoot) {
+    parallaxRoot.addEventListener('pointermove', (event) => {
+      const rect = parallaxRoot.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      parallaxRoot.style.transform = `perspective(900px) rotateX(${-y * 2}deg) rotateY(${x * 2}deg)`;
+    });
+
+    parallaxRoot.addEventListener('pointerleave', () => {
+      parallaxRoot.style.transform = '';
+    });
+  }
+
+  document.querySelectorAll('.hero-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `translate(${x * 8}px, ${y * 8}px) rotate(${x * 3}deg)`;
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+document.querySelectorAll('[data-count]').forEach((element) => {
+  const target = Number(element.dataset.count);
+  let animated = false;
+
+  const animateCounter = () => {
+    if (animated) return;
+    animated = true;
+
+    const duration = prefersReduced ? 0 : 1100;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progressValue = duration === 0
+        ? 1
+        : Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progressValue, 3);
+      element.textContent = Math.floor(eased * target);
+
+      if (progressValue < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      if (entries[0].isIntersecting) {
+        animateCounter();
+        observer.disconnect();
+      }
+    });
+    counterObserver.observe(element);
+  } else {
+    animateCounter();
+  }
+});
+
+window.addEventListener(
+  'scroll',
+  () => document.documentElement.style.setProperty('--scrollY', `${window.scrollY * 0.04}px`),
+  { passive: true }
+);
