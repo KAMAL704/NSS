@@ -136,9 +136,9 @@ window.addEventListener(
   { passive: true }
 );
 
-/* Always use the supplied NSS JPEG as the shared visible logo. */
+/* Use the NSS SLIET emblem sourced from the official NSS Instagram profile. */
 document.querySelectorAll('.brand img').forEach((logo) => {
-  logo.src = 'assets/logo.jpeg';
+  logo.src = 'assets/nss-sliet-logo.jpg';
   logo.removeAttribute('srcset');
   logo.alt = 'NSS SLIET official logo';
 });
@@ -163,12 +163,12 @@ socialDock.innerHTML = `
     Instagram ↗
   </a>
   <a
-    href="https://www.linkedin.com/company/official-sliet/"
+    href="https://www.linkedin.com/company/nss-sliet/"
     target="_blank"
     rel="noopener"
-    aria-label="SLIET LinkedIn"
+    aria-label="NSS SLIET LinkedIn"
   >
-    LinkedIn ↗
+    NSS LinkedIn ↗
   </a>
 `;
 
