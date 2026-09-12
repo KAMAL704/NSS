@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="enhancements.css" />
   <link rel="stylesheet" href="css/modern.css" />
   <link rel="stylesheet" href="css/nss-greenery.css" />
-  <link rel="stylesheet" href="css/home-slider.css" />
 </head>
 <body class="nss-greenery">
   <div class="nss-nature-layer" aria-hidden="true">
@@ -20,19 +19,21 @@
     <span class="nss-leaf"></span>
     <span class="nss-leaf"></span>
   </div>
-
+  <div class="page-leaves" aria-hidden="true">
+    <span>🌿</span>
+    <span>🍃</span>
+    <span>🌱</span>
+    <span>🍃</span>
+    <span>🌿</span>
+  </div>
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="NSS SLIET home">
-      <img src="assets/logo.jpeg" alt="National Service Scheme logo" />
+      <img src="assets/logo.jpeg" alt="NSS SLIET official logo" />
       <span>NSS <small>SLIET LONGOWAL</small></span>
     </a>
-
-    <button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false">
-      ☰
-    </button>
-
+    <button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="Primary navigation">
       <a class="active" href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -48,163 +49,193 @@
   </header>
 
   <main>
-    <section class="nss-slider" aria-label="NSS SLIET photo highlights">
-      <div class="nss-slides">
-        <article class="nss-slide is-active" style="--slide-image: url('https://hostel.sliet.ac.in/files/2023/08/IMG-20230828-WA0001.jpg');">
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <p class="eyebrow">NSS SLIET · COMMUNITY</p>
+    <section class="nss-home-slider" aria-label="NSS SLIET photo highlights">
+      <div class="nss-home-slides">
+        <article class="nss-home-slide is-active">
+          <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/Swachh1.jpg" alt="SLIET cleanliness activity" />
+          <div class="nss-slide-content">
+            <div class="nss-slide-kicker">National Service Scheme · SLIET Longowal</div>
             <h1>Service begins<br /><em>with people.</em></h1>
             <p>Students stepping beyond the classroom to participate, volunteer and contribute to the community.</p>
             <a class="slider-button" href="activities.html">Explore Activities ↗</a>
           </div>
-          <span class="slide-number">01 / 04</span>
         </article>
 
-        <article class="nss-slide" style="--slide-image: url('https://hc.sliet.ac.in/files/2022/12/5.jpg');">
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <p class="eyebrow">NSS SLIET · SERVICE</p>
-            <h2>Give time.<br /><em>Save lives.</em></h2>
-            <p>NSS and SLIET have documented blood-donation activity as part of their community-service work.</p>
-            <a class="slider-button" href="activities.html">See Our Work ↗</a>
+        <article class="nss-home-slide">
+          <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/EkPed.jpg" alt="SLIET environment initiative" />
+          <div class="nss-slide-content">
+            <div class="nss-slide-kicker">Environment · Responsibility · Action</div>
+            <h1>Grow a greener<br /><em>tomorrow.</em></h1>
+            <p>Environmental awareness becomes stronger when students turn concern for nature into community action.</p>
+            <a class="slider-button" href="activities.html">See Our Activities ↗</a>
           </div>
-          <span class="slide-number">02 / 04</span>
         </article>
 
-        <article class="nss-slide" style="--slide-image: url('https://administration.sliet.ac.in/files/2025/09/ind25-22.jpg');">
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <p class="eyebrow">SLIET · YOUTH · NATION</p>
-            <h2>Grow together.<br /><em>Serve together.</em></h2>
-            <p>A visual story of campus life, student participation and the spirit of responsible citizenship.</p>
-            <a class="slider-button" href="viksit-bharat-2026-27.html">Viksit Bharat ↗</a>
+        <article class="nss-home-slide">
+          <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/Swachh2019-1.jpg" alt="SLIET Swachhta activity" />
+          <div class="nss-slide-content">
+            <div class="nss-slide-kicker">Swachhta · Community Participation</div>
+            <h1>Clean campus.<br /><em>Stronger community.</em></h1>
+            <p>Volunteer-led cleanliness and awareness activities build habits of responsibility and collective ownership.</p>
+            <a class="slider-button" href="gallery.html">View Gallery ↗</a>
           </div>
-          <span class="slide-number">03 / 04</span>
         </article>
 
-        <article class="nss-slide" style="--slide-image: url('https://hc.sliet.ac.in/files/2022/12/16.jpg');">
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <p class="eyebrow">NSS SLIET · AWARENESS</p>
-            <h2>Awareness<br /><em>creates action.</em></h2>
-            <p>From health awareness to environmental responsibility, every initiative starts with participation.</p>
-            <a class="slider-button" href="projects.html">View Projects ↗</a>
+        <article class="nss-home-slide">
+          <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/Efficycle-2019.jpg" alt="SLIET student sustainability activity" />
+          <div class="nss-slide-content">
+            <div class="nss-slide-kicker">Youth · Sustainability · Leadership</div>
+            <h1>Young minds.<br /><em>Real impact.</em></h1>
+            <p>NSS gives students a practical space to learn teamwork, leadership, empathy and civic responsibility.</p>
+            <a class="slider-button" href="projects.html">Explore Projects ↗</a>
           </div>
-          <span class="slide-number">04 / 04</span>
         </article>
       </div>
 
-      <div class="slider-controls">
-        <button class="slider-arrow" type="button" data-slide-prev aria-label="Previous slide">←</button>
-        <div class="slider-dots" role="tablist" aria-label="Choose a slide">
-          <button class="is-active" type="button" data-slide-dot="0" aria-label="Slide 1"></button>
-          <button type="button" data-slide-dot="1" aria-label="Slide 2"></button>
-          <button type="button" data-slide-dot="2" aria-label="Slide 3"></button>
-          <button type="button" data-slide-dot="3" aria-label="Slide 4"></button>
+      <div class="nss-slider-controls">
+        <button class="nss-slider-arrow" type="button" data-slider-prev aria-label="Previous slide">←</button>
+        <div class="nss-slider-dots" role="tablist" aria-label="Choose slide">
+          <button class="nss-slider-dot is-active" type="button" data-slider-dot="0" aria-label="Slide 1"></button>
+          <button class="nss-slider-dot" type="button" data-slider-dot="1" aria-label="Slide 2"></button>
+          <button class="nss-slider-dot" type="button" data-slider-dot="2" aria-label="Slide 3"></button>
+          <button class="nss-slider-dot" type="button" data-slider-dot="3" aria-label="Slide 4"></button>
         </div>
-        <button class="slider-arrow" type="button" data-slide-next aria-label="Next slide">→</button>
+        <div class="nss-slider-arrows">
+          <button class="nss-slider-arrow" type="button" data-slider-next aria-label="Next slide">→</button>
+        </div>
       </div>
     </section>
 
-    <section class="section nss-welcome">
-      <div class="section-label">01 — NSS AT SLIET</div>
-      <div class="two-col">
+    <section class="section nss-home-intro">
+      <div class="nss-home-intro-inner">
         <div>
-          <h2 class="reveal nss-reveal">Welcome to<br /><em>NSS SLIET.</em></h2>
+          <div class="section-label">01 — NSS AT SLIET</div>
+          <h2>Learning through<br /><em>service.</em></h2>
         </div>
-        <div class="reveal nss-reveal">
-          <p class="lead">The National Service Scheme at SLIET connects student development with community service, social awareness and responsible action.</p>
-          <p>Through volunteering, outreach, awareness programmes and campus initiatives, NSS gives students a practical way to learn teamwork, leadership, empathy and civic responsibility.</p>
+        <div>
+          <p class="lead">Welcome to the National Service Scheme at Sant Longowal Institute of Engineering &amp; Technology.</p>
+          <p>NSS connects student development with community service and social awareness. Through volunteering, outreach and campus initiatives, students learn by doing and lead with empathy.</p>
           <a class="text-link" href="about.html">Know more about NSS →</a>
         </div>
       </div>
     </section>
 
-    <section class="nss-green-banner">
-      <div class="nss-green-banner-inner reveal nss-reveal">
-        <div>
-          <p class="eyebrow">NOT ME BUT YOU</p>
-          <h2>One campus.<br /><em>Many ways to serve.</em></h2>
-        </div>
-        <div class="nss-banner-links">
-          <a href="events.html">Upcoming Events ↗</a>
-          <a href="gallery.html">Photo Gallery ↗</a>
-          <a href="social.html">Social Updates ↗</a>
+    <section class="nss-photo-strip-section">
+      <div class="section">
+        <div class="section-label">02 — MOMENTS OF SERVICE</div>
+        <div class="nss-photo-strip">
+          <figure>
+            <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/Swachh1.jpg" alt="SLIET community service activity" />
+            <figcaption>COMMUNITY SERVICE</figcaption>
+          </figure>
+          <figure>
+            <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/EkPed.jpg" alt="SLIET environment activity" />
+            <figcaption>GREEN ACTION</figcaption>
+          </figure>
+          <figure>
+            <img src="https://sliet.ac.in/wp-content/themes/sliet/slideshow/images/Swachh2019-2.jpg" alt="SLIET Swachhta activity" />
+            <figcaption>VOLUNTEERING</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="section impact-home">
+    <section class="dark-section impact-section">
+      <div class="section section-pad">
+        <div class="section-label light">03 — THE NSS SPIRIT</div>
+        <div class="impact-grid">
+          <article class="reveal nss-reveal">
+            <span>01</span>
+            <h3>Community<br />Service</h3>
+            <p>Volunteering that responds to community needs and creates meaningful experience.</p>
+          </article>
+          <article class="reveal nss-reveal">
+            <span>02</span>
+            <h3>Youth<br />Leadership</h3>
+            <p>Teamwork, responsibility, confidence and leadership developed through participation.</p>
+          </article>
+          <article class="reveal nss-reveal">
+            <span>03</span>
+            <h3>Social<br />Awareness</h3>
+            <p>Health, education, environment and civic initiatives encourage responsible citizenship.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="section-head reveal nss-reveal">
         <div>
-          <div class="section-label">02 — OUR FOCUS</div>
-          <h2>People first.<br /><em>Purpose always.</em></h2>
+          <div class="section-label">04 — DOCUMENTED IMPACT</div>
+          <h2>Small actions.<br /><em>Visible change.</em></h2>
         </div>
-        <a class="text-link" href="activities.html">View all activities →</a>
+        <a class="text-link" href="activities.html">All activities →</a>
       </div>
-
       <div class="cards three">
         <article class="activity reveal nss-reveal">
-          <span>01</span>
-          <h3>Community Service</h3>
-          <p>Student volunteering that responds to community needs and builds meaningful experience.</p>
+          <span>75 VOLUNTEERS</span>
+          <h3>Environment Rally</h3>
+          <p>NSS SLIET documented 75 volunteers participating in an Environment Protection Rally on World Environment Day in 2022.</p>
+          <a href="activities.html" class="card-arrow">View story ↗</a>
         </article>
         <article class="activity reveal nss-reveal">
-          <span>02</span>
-          <h3>Social Awareness</h3>
-          <p>Awareness programmes around health, education, environment and responsible citizenship.</p>
+          <span>52 PARTICIPANTS</span>
+          <h3>Poster Exhibition</h3>
+          <p>52 participants submitted environment-themed posters as part of the World Environment Day programme.</p>
+          <a href="activities.html" class="card-arrow">View story ↗</a>
         </article>
         <article class="activity reveal nss-reveal">
-          <span>03</span>
-          <h3>Leadership</h3>
-          <p>Planning, teamwork and responsibility developed through real-world service activities.</p>
+          <span>COMMUNITY OUTREACH</span>
+          <h3>Learn by Serving</h3>
+          <p>Education outreach, awareness drives, cleanliness activities and other service initiatives form the NSS journey.</p>
+          <a href="activities.html" class="card-arrow">View activities ↗</a>
         </article>
       </div>
     </section>
 
-    <section class="nss-viksit-card nss-reveal" data-nss-parallax="5">
-      <div>
-        <p class="eyebrow">NSS SLIET · YOUTH · NATION</p>
-        <h2>Viksit Bharat<br /><span>2026–27</span></h2>
-        <p>A dedicated space for youth-led service, community action, stories and future-focused initiatives.</p>
+    <section class="section">
+      <div class="nss-viksit-card nss-reveal">
+        <div>
+          <p class="eyebrow">NSS SLIET · YOUTH · NATION</p>
+          <h2>Viksit Bharat<br /><span>2026–27</span></h2>
+          <p>A dedicated space for youth-led service, community action, stories and future-focused initiatives.</p>
+        </div>
+        <a class="btn btn-light" href="viksit-bharat-2026-27.html">Explore Viksit Bharat ↗</a>
       </div>
-      <a class="btn btn-light" href="viksit-bharat-2026-27.html">Explore Viksit Bharat ↗</a>
     </section>
 
     <section class="section social-home">
       <div class="section-head reveal nss-reveal">
         <div>
-          <div class="section-label">03 — FOLLOW THE MOVEMENT</div>
+          <div class="section-label">05 — FOLLOW THE MOVEMENT</div>
           <h2>NSS SLIET<br /><em>online.</em></h2>
         </div>
         <a class="text-link" href="social.html">All social links →</a>
       </div>
-
       <div class="cards three">
         <a class="activity social-card reveal nss-reveal" href="https://www.instagram.com/nss_sliet/" target="_blank" rel="noopener">
           <span>INSTAGRAM</span>
           <h3>@nss_sliet</h3>
-          <p>Photos, reels, announcements and NSS SLIET moments.</p>
+          <p>Follow NSS SLIET for public photos, reels, announcements and updates.</p>
           <strong>Open Instagram ↗</strong>
         </a>
         <a class="activity social-card reveal nss-reveal" href="https://www.linkedin.com/company/official-sliet/" target="_blank" rel="noopener">
           <span>LINKEDIN</span>
           <h3>SLIET Official</h3>
-          <p>Institute updates, achievements and official announcements.</p>
+          <p>Follow the institute's official professional updates and announcements.</p>
           <strong>Open LinkedIn ↗</strong>
         </a>
         <a class="activity social-card reveal nss-reveal" href="social.html">
           <span>SOCIAL HUB</span>
           <h3>Connect with NSS</h3>
-          <p>Follow verified channels and keep up with public NSS SLIET updates.</p>
+          <p>Find the verified NSS SLIET and SLIET social channels in one place.</p>
           <strong>Open Social Hub ↗</strong>
         </a>
       </div>
     </section>
 
     <section class="quote reveal nss-reveal">
-      <p>“Not Me<br />But You.”</p>
+      <p>Not Me.<br /><em>But You.</em></p>
       <span>NATIONAL SERVICE SCHEME · SLIET LONGOWAL</span>
     </section>
 
@@ -223,7 +254,7 @@
   <footer>
     <div class="footer-main">
       <div class="brand">
-        <img src="assets/logo.jpeg" alt="NSS SLIET" />
+        <img src="assets/logo.jpeg" alt="NSS SLIET official logo" />
         <span>NSS <small>SLIET LONGOWAL</small></span>
       </div>
       <p>Not Me But You — service, leadership and community.</p>
