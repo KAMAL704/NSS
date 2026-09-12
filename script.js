@@ -118,3 +118,28 @@ window.addEventListener(
   () => document.documentElement.style.setProperty('--scrollY', `${window.scrollY * 0.04}px`),
   { passive: true }
 );
+
+/*
+ * Shared NSS SLIET branding.
+ * Every page uses the supplied JPEG emblem for a consistent logo.
+ */
+document.querySelectorAll('.brand img').forEach((logo) => {
+  logo.src = 'assets/logo.jpeg';
+  logo.removeAttribute('srcset');
+  logo.alt = 'NSS SLIET official logo';
+});
+
+/*
+ * Shared social links.
+ * This small dock appears on every page without duplicating markup in each HTML file.
+ */
+const socialDock = document.createElement('div');
+socialDock.className = 'nss-social-dock';
+socialDock.setAttribute('aria-label', 'NSS SLIET social links');
+socialDock.innerHTML = `
+  <span class="nss-social-label">NSS SLIET</span>
+  <a href="https://www.instagram.com/nss_sliet/" target="_blank" rel="noopener" aria-label="NSS SLIET Instagram">Instagram ↗</a>
+  <a href="https://www.linkedin.com/company/official-sliet/" target="_blank" rel="noopener" aria-label="SLIET LinkedIn">LinkedIn ↗</a>
+`;
+
+document.body.appendChild(socialDock);
