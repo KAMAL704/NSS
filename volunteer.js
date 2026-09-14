@@ -1,62 +1,75 @@
 (() => {
-  const form = document.querySelector('#volunteer-form');
-  const result = document.querySelector('#profile-result');
-  if (!form || !result) return;
+  /*
+   * Published NSS SLIET profile directory.
+   * Add a confirmed team member here to make their name searchable and card-ready.
+   */
+  const profiles = [
+    { name: 'Dr. Tajinder Singh', role: 'Faculty · Programme Officer', session: '2026–27', teamRole: 'Faculty', number: 'NSS-FAC-001' },
+    { name: 'Dr. Vinod Kumar Meena', role: 'Faculty Advisor', session: '2024–25', teamRole: 'Faculty', number: 'NSS-FAC-002' },
+    { name: 'Kitanshu', role: 'Coordinator', session: '2026–27', teamRole: 'Coordinator', number: 'NSS-COO-001' },
+    { name: 'Isha', role: 'Co-coordinator', session: '2026–27', teamRole: 'Co-coordinator', number: 'NSS-COO-002' },
+    { name: 'Annu', role: 'Co-coordinator', session: '2026–27', teamRole: 'Co-coordinator', number: 'NSS-COO-003' },
+    { name: 'Himanshu', role: 'Co-coordinator', session: '2026–27', teamRole: 'Co-coordinator', number: 'NSS-COO-004' },
+    { name: 'Aditya Kumar', role: 'Co-coordinator', session: '2026–27', teamRole: 'Co-coordinator', number: 'NSS-COO-005' },
+    { name: 'Somesh', role: 'Student Coordinator', session: '2025–26', teamRole: 'Coordinator', number: 'NSS-COO-006' },
+    { name: 'Ajit Kumar', role: 'Student Coordinator', session: '2025–26', teamRole: 'Coordinator', number: 'NSS-COO-007' },
+    { name: 'Kamal', role: 'NSS Volunteer', session: '2026–27', teamRole: 'Volunteer', number: 'NSS-VOL-001' }
+  ];
 
-  const storageKey = 'nss-sliet-volunteer-profile';
+  const search = document.querySelector('#profile-search');
+  const results = document.querySelector('#profile-results');
+  const help = document.querySelector('#profile-search-help');
+  if (!search || !results || !help) return;
+
   const fields = {
-    initials: document.querySelector('#card-initials'), name: document.querySelector('#card-name'),
-    role: document.querySelector('#card-role'), session: document.querySelector('#card-session'),
-    department: document.querySelector('#card-department'), number: document.querySelector('#card-number')
+    initials: document.querySelector('#card-initials'),
+    name: document.querySelector('#card-name'),
+    role: document.querySelector('#card-role'),
+    session: document.querySelector('#card-session'),
+    teamRole: document.querySelector('#card-department'),
+    number: document.querySelector('#card-number'),
+    print: document.querySelector('#print-card')
   };
-  const initialsFor = (name) => name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'NV';
-  const profileNumber = () => `NSS-${new Date().getFullYear()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
 
-  function showProfile(profile, shouldScroll = true) {
+  const initialsFor = (name) => name.replace(/^Dr\.\s*/i, '').trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'NS';
+
+  function showProfile(profile) {
     fields.initials.textContent = initialsFor(profile.name);
     fields.name.textContent = profile.name;
     fields.role.textContent = profile.role;
     fields.session.textContent = profile.session;
-    fields.department.textContent = profile.department || 'Not added';
+    fields.teamRole.textContent = profile.teamRole;
     fields.number.textContent = profile.number;
-    result.hidden = false;
-    if (shouldScroll) result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    fields.print.disabled = false;
   }
 
-  function fillForm(profile) {
-    ['name', 'role', 'session', 'department'].forEach((key) => {
-      if (profile[key] && form.elements[key]) form.elements[key].value = profile[key];
-    });
-    form.elements.consent.checked = true;
-  }
+  function renderResults(query = '') {
+    const normalized = query.trim().toLowerCase();
+    const matches = profiles.filter((profile) => profile.name.toLowerCase().includes(normalized));
+    help.textContent = normalized
+      ? `${matches.length} matching profile${matches.length === 1 ? '' : 's'} found.`
+      : `${profiles.length} published team profiles.`;
+    results.replaceChildren();
 
-  try {
-    const stored = JSON.parse(localStorage.getItem(storageKey));
-    if (stored && stored.name && stored.role && stored.session && stored.number) {
-      fillForm(stored);
-      showProfile(stored, false);
+    if (!matches.length) {
+      const empty = document.createElement('p');
+      empty.className = 'profile-empty';
+      empty.textContent = 'No published profile found. Try another name.';
+      results.append(empty);
+      return;
     }
-  } catch (_) {
-    localStorage.removeItem(storageKey);
+
+    matches.forEach((profile) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'profile-result';
+      button.innerHTML = `<span class="profile-result-initials" aria-hidden="true">${initialsFor(profile.name)}</span><strong>${profile.name}</strong><span aria-hidden="true">→</span>`;
+      button.addEventListener('click', () => showProfile(profile));
+      results.append(button);
+    });
   }
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const data = new FormData(form);
-    let oldProfile = null;
-    try { oldProfile = JSON.parse(localStorage.getItem(storageKey)); } catch (_) { oldProfile = null; }
-    const profile = {
-      name: String(data.get('name') || '').trim(), role: String(data.get('role') || ''),
-      session: String(data.get('session') || ''), department: String(data.get('department') || '').trim(),
-      number: oldProfile?.number || profileNumber()
-    };
-    localStorage.setItem(storageKey, JSON.stringify(profile));
-    showProfile(profile);
-  });
-
-  document.querySelector('#print-card')?.addEventListener('click', () => window.print());
-  document.querySelector('#edit-profile')?.addEventListener('click', () => {
-    result.hidden = true;
-    form.querySelector('input[name="name"]')?.focus();
-  });
+  search.addEventListener('input', () => renderResults(search.value));
+  fields.print?.addEventListener('click', () => window.print());
+  renderResults();
 })();
