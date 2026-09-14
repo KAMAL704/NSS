@@ -138,7 +138,7 @@ window.addEventListener(
 
 /* Use the NSS SLIET emblem sourced from the official NSS Instagram profile. */
 document.querySelectorAll('.brand img').forEach((logo) => {
-  logo.src = 'assets/nss-sliet-logo.jpg';
+  logo.src = 'assets/logo.jpeg';
   logo.removeAttribute('srcset');
   logo.alt = 'NSS SLIET official logo';
 });

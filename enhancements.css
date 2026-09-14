@@ -33,11 +33,12 @@
 .brand img {
   /* Header/footer NSS logo: keep the complete emblem inside its round frame. */
   object-fit: contain;
-  padding: 2px;
+  object-position: center;
+  /* padding: 0px */
   border-radius: 50%;
-  background: #fff;
+  background: #f6f5f5;
   box-shadow: 0 0 0 2px rgba(200, 255, 104, 0.26);
-
+}
 /* The NSS SLIET identity stays left-aligned in the header; the emblem never crops. */
 .site-header { display: flex; justify-content: space-between; }
 .site-header .brand { position: relative; z-index: 2; }
