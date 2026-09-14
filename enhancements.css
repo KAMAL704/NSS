@@ -31,7 +31,9 @@
 }
 
 .brand img {
+  /* Header/footer NSS logo: keep the complete emblem inside its round frame. */
   object-fit: contain;
+  padding: 2px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 0 0 2px rgba(200, 255, 104, 0.26);
