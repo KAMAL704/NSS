@@ -31,18 +31,16 @@
 }
 
 .brand img {
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 50%;
-  background: #06120b;
+  background: #fff;
   box-shadow: 0 0 0 2px rgba(200, 255, 104, 0.26);
 }
 
-/* Keep the institutional mark centred in the header and footer on every page. */
-.site-header { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
-.site-header .brand { grid-column: 2; justify-self: center; position: relative; z-index: 2; }
-.site-header .nav, .site-header .menu-btn { grid-column: 3; justify-self: end; }
-.footer-main { justify-content: center; flex-direction: column; text-align: center; }
-.footer-main .brand { justify-content: center; }
+/* The NSS SLIET identity stays left-aligned in the header; the emblem never crops. */
+.site-header { display: flex; justify-content: space-between; }
+.site-header .brand { position: relative; z-index: 2; }
+.footer-main { justify-content: space-between; flex-direction: row; text-align: left; }
 
 /* Team directory: card press/tap flips between a visual profile and role detail. */
 .team-intro { padding-bottom: 24px; }
@@ -106,7 +104,7 @@
 .id-card-status { padding: 15px 20px; background: var(--nss-lime); color: var(--nss-green); font-size: 9px; font-weight: 900; letter-spacing: .1em; text-align: center; }
 .id-card-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 
-@media (max-width: 900px) { .site-header .menu-btn { display: block; } .site-header .nav { grid-column: 1 / -1; justify-self: stretch; } .team-flip-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .volunteer-layout { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .site-header .menu-btn { display: block; } .team-flip-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .volunteer-layout { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .team-flip-grid { grid-template-columns: 1fr; } .team-flip, .team-flip-toggle, .team-flip-inner { min-height: 308px; } .privacy-panel { flex-direction: column; } .id-card-meta { grid-template-columns: 1fr; } }
 @media print { body * { visibility: hidden; } .id-card-panel, .id-card-panel * { visibility: visible; } .id-card-panel { position: absolute; inset: 0; width: 100%; padding: 20mm; } .volunteer-id-card { max-width: 88mm; box-shadow: none; } .id-card-actions { display: none; } }
 
