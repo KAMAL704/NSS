@@ -1,0 +1,78 @@
+:root {
+  --social-dock-bg: rgba(5, 45, 26, 0.92);
+  --social-dock-text: #f4ffe8;
+  --social-dock-accent: #c7ff5b;
+}
+
+.nss-social-dock {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid rgba(199, 255, 91, 0.22);
+  border-radius: 999px;
+  background: var(--social-dock-bg);
+  color: var(--social-dock-text);
+  box-shadow: 0 18px 45px rgba(4, 34, 19, 0.22);
+  backdrop-filter: blur(16px);
+  animation: socialDockIn 0.8s ease both;
+}
+
+.nss-social-dock a,
+.nss-social-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.nss-social-dock a {
+  padding: 8px 10px;
+  border-radius: 999px;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.nss-social-dock a:hover {
+  transform: translateY(-3px);
+  background: var(--social-dock-accent);
+  color: #082016;
+}
+
+.nss-social-label {
+  color: var(--social-dock-accent);
+  padding: 0 4px 0 2px;
+}
+
+@keyframes socialDockIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .nss-social-dock {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    justify-content: center;
+  }
+
+  .nss-social-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nss-social-dock {
+    animation: none;
+  }
+}

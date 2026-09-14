@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NSS SLIET — Volunteer profile</title>
+  <link rel="icon" href="assets/nss-sliet-logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhancements.css" />
+  <link rel="stylesheet" href="css/modern.css" />
+  <link rel="stylesheet" href="css/nss-greenery.css" />
+</head>
+<body class="nss-greenery volunteer-page">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="NSS SLIET home"><img src="assets/nss-sliet-logo.jpg" alt="NSS SLIET official logo" /><span>NSS <small>SLIET LONGOWAL</small></span></a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="activities.html">Activities</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="team.html">Team</a><a href="viksit-bharat-2026-27.html">Viksit Bharat</a><a href="social.html">Connect</a><a class="nav-cta active" href="volunteer.html">Register ↗</a></nav>
+  </header>
+  <main>
+    <section class="page-hero nature-hero volunteer-hero"><div class="leaf-glow" aria-hidden="true"></div><p class="eyebrow">NSS SLIET · VOLUNTEER PROFILE</p><h1>Every volunteer<br /><em>belongs here.</em></h1><p>Create a personal NSS volunteer profile card for your device—whether you support events, social media, anchoring or any other NSS activity.</p></section>
+    <section class="section volunteer-section">
+      <div class="privacy-panel reveal nss-reveal"><strong>Your privacy comes first.</strong><span>This form saves only in this browser on this device. It does not submit a registration to NSS SLIET or create an official membership record.</span></div>
+      <div class="volunteer-layout">
+        <form class="volunteer-form reveal nss-reveal" id="volunteer-form">
+          <div class="section-label">CREATE YOUR PROFILE</div><h2>Your volunteer<br /><em>details.</em></h2>
+          <label>Full name<input name="name" type="text" maxlength="70" autocomplete="name" required /></label>
+          <label>NSS role<select name="role" required><option value="">Choose your role</option><option>NSS Volunteer</option><option>Social Media Volunteer</option><option>Anchoring Volunteer</option><option>Event Volunteer</option><option>Other NSS Volunteer</option></select></label>
+          <label>Academic session<select name="session" required><option value="">Choose a session</option><option>2026–27</option><option>2025–26</option><option>2024–25</option></select></label>
+          <label>Department / course <span>(optional)</span><input name="department" type="text" maxlength="70" autocomplete="organization-title" /></label>
+          <label class="consent"><input name="consent" type="checkbox" required /><span>I understand this is a local, self-generated profile card—not an official NSS identity card.</span></label>
+          <button class="btn btn-dark" type="submit">Create profile card ↗</button>
+        </form>
+        <div class="id-card-panel reveal nss-reveal" id="profile-result" hidden aria-live="polite">
+          <p class="section-label">YOUR VOLUNTEER PROFILE CARD</p>
+          <div class="volunteer-id-card" id="volunteer-card">
+            <div class="id-card-top"><img src="assets/nss-sliet-logo.jpg" alt="NSS SLIET logo" /><span>NSS <small>SLIET LONGOWAL</small></span></div>
+            <div class="id-card-profile"><div class="id-card-initials" id="card-initials">NV</div><div><strong id="card-name">NSS Volunteer</strong><span id="card-role">Volunteer</span></div></div>
+            <div class="id-card-meta"><span>SESSION <b id="card-session">—</b></span><span>DEPARTMENT <b id="card-department">—</b></span><span>PROFILE NO. <b id="card-number">—</b></span></div>
+            <div class="id-card-status">SELF-GENERATED PROFILE · VERIFICATION PENDING</div>
+          </div>
+          <div class="id-card-actions"><button class="btn btn-dark" type="button" id="print-card">Print / save as PDF</button><button class="btn btn-outline" type="button" id="edit-profile">Edit details</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="footer-main"><div class="brand"><img src="assets/nss-sliet-logo.jpg" alt="NSS SLIET" /><span>NSS <small>SLIET LONGOWAL</small></span></div><div class="footer-links"><a href="https://www.instagram.com/nss_sliet/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.linkedin.com/company/nss-sliet/" target="_blank" rel="noopener">NSS LinkedIn ↗</a></div></div><div class="footer-bottom"><span>© 2026 NSS SLIET</span><a href="https://sliet.ac.in/nss/" target="_blank" rel="noopener">Official NSS SLIET ↗</a></div></footer>
+  <script src="script.js"></script><script src="volunteer.js"></script><script src="js/nss-motion.js"></script>
+</body>
+</html>

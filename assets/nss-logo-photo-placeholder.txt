@@ -1,0 +1,1 @@
+The supplied NSS logo image is represented in the site by the scalable `assets/nss-official-logo.svg` asset. This keeps the logo sharp for navigation, hero, favicon and animation.
