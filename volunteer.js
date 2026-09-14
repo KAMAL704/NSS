@@ -14,6 +14,7 @@
     { name: 'Somesh', role: 'Student Coordinator', session: '2025–26', teamRole: 'Coordinator', number: 'NSS-COO-006' },
     { name: 'Ajit Kumar', role: 'Student Coordinator', session: '2025–26', teamRole: 'Coordinator', number: 'NSS-COO-007' },
     { name: 'Kamal', role: 'NSS Volunteer', session: '2026–27', teamRole: 'Volunteer', number: 'NSS-VOL-001' }
+    { name: 'Vishal Meena', role: 'NSS Volunteer', session: '2026–27', teamRole: 'Student Advisor', number: 'NSS-VOL-001' }
   ];
 
   const search = document.querySelector('#profile-search');
