@@ -143,6 +143,14 @@ document.querySelectorAll('.brand img').forEach((logo) => {
   logo.alt = 'NSS SLIET official logo';
 });
 
+/* Accessible click-to-flip cards used by the team directory. */
+document.querySelectorAll('[data-team-flip]').forEach((card) => {
+  card.addEventListener('click', () => {
+    const flipped = card.classList.toggle('is-flipped');
+    card.setAttribute('aria-pressed', String(flipped));
+  });
+});
+
 /* Shared social links. */
 const socialStylesheet = document.createElement('link');
 socialStylesheet.rel = 'stylesheet';

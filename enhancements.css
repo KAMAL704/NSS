@@ -37,6 +37,79 @@
   box-shadow: 0 0 0 2px rgba(200, 255, 104, 0.26);
 }
 
+/* Keep the institutional mark centred in the header and footer on every page. */
+.site-header { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+.site-header .brand { grid-column: 2; justify-self: center; position: relative; z-index: 2; }
+.site-header .nav, .site-header .menu-btn { grid-column: 3; justify-self: end; }
+.footer-main { justify-content: center; flex-direction: column; text-align: center; }
+.footer-main .brand { justify-content: center; }
+
+/* Team directory: card press/tap flips between a visual profile and role detail. */
+.team-intro { padding-bottom: 24px; }
+.team-years { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.team-year-link { border: 1px solid var(--nss-line); border-radius: 999px; padding: 9px 14px; color: var(--nss-green); font-size: 12px; font-weight: 900; }
+.team-year-link:hover, .team-year-link.is-current { background: var(--nss-green); border-color: var(--nss-green); color: #fff; }
+.team-session { scroll-margin-top: 92px; }
+.team-session-muted { max-width: none; background: rgba(255, 255, 255, .38); }
+.team-session-heading { max-width: 720px; margin-bottom: 42px; }
+.team-session-heading h2 { font-size: clamp(42px, 5vw, 72px); margin-bottom: 16px; }
+.team-session-heading p:last-child, .team-source-note { color: var(--muted); }
+.team-flip-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.team-flip-grid-compact { max-width: 940px; }
+.team-flip { min-height: 340px; perspective: 1200px; }
+.team-flip-toggle { display: block; width: 100%; height: 100%; min-height: 340px; padding: 0; border: 0; border-radius: 22px; background: transparent; color: inherit; cursor: pointer; font: inherit; text-align: left; }
+.team-flip-toggle:focus-visible { outline: 3px solid var(--nss-lime); outline-offset: 5px; }
+.team-flip-inner { display: block; position: relative; width: 100%; height: 100%; min-height: 340px; transform-style: preserve-3d; transition: transform 700ms cubic-bezier(.2, .7, .2, 1); }
+.team-flip-toggle.is-flipped .team-flip-inner { transform: rotateY(180deg); }
+.team-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; overflow: hidden; padding: 28px; border: 1px solid var(--nss-line); border-radius: 22px; backface-visibility: hidden; box-shadow: 0 18px 48px rgba(7, 59, 34, .09); }
+.team-front { background: linear-gradient(145deg, rgba(255,255,255,.96), #e6f5de); }
+.team-front::before { content: ""; position: absolute; right: -72px; top: -78px; width: 220px; height: 220px; border: 1px solid rgba(11,107,59,.18); border-radius: 50%; }
+.team-back { justify-content: center; background: linear-gradient(140deg, #063a22, #0c6a3c); color: #fff; transform: rotateY(180deg); }
+.team-portrait { position: relative; z-index: 1; display: grid; place-items: center; width: 100px; height: 100px; margin-bottom: auto; border: 5px solid rgba(255,255,255,.8); border-radius: 50%; background: linear-gradient(140deg, var(--nss-lime), #5daa50); box-shadow: 0 16px 32px rgba(7,59,34,.18); color: var(--nss-green); font-size: 29px; font-weight: 900; }
+.team-role, .team-kicker, .team-hint { font-size: 10px; font-weight: 900; letter-spacing: .14em; }
+.team-role, .team-kicker { color: var(--nss-green-light); }
+.team-back .team-kicker, .team-back .team-hint { color: #c8ff9a; }
+.team-face strong { margin: 9px 0; font-size: clamp(25px, 2.7vw, 36px); line-height: 1; letter-spacing: -.05em; }
+.team-back > span:not(.team-kicker):not(.team-hint) { max-width: 27ch; color: rgba(255,255,255,.82); }
+.team-hint { margin-top: 16px; color: var(--muted); }
+.team-archive-note { display: flex; min-height: 250px; max-width: 420px; flex-direction: column; justify-content: center; padding: 32px; border: 1px dashed rgba(7,59,34,.34); border-radius: 22px; background: rgba(255,255,255,.46); }
+.team-archive-note h3 { margin: 12px 0; font-size: 28px; }
+.team-archive-note p { color: var(--muted); }
+.team-source-note { max-width: 880px; margin-top: 32px; font-size: 13px; }
+.volunteer-callout { margin-top: 30px; }
+
+/* Local volunteer profile card. No personal details leave the visitor's browser. */
+.privacy-panel { display: flex; gap: 14px; max-width: 970px; margin-bottom: 34px; padding: 18px 20px; border: 1px solid rgba(7,59,34,.18); border-radius: 16px; background: #e4f4dc; color: var(--nss-green); }
+.privacy-panel span { color: var(--muted); }
+.volunteer-layout { display: grid; grid-template-columns: minmax(0,.9fr) minmax(320px,.8fr); gap: clamp(30px,7vw,100px); align-items: start; }
+.volunteer-form { display: grid; gap: 18px; padding: clamp(24px,4vw,44px); border: 1px solid var(--nss-line); border-radius: 24px; background: rgba(255,255,255,.68); box-shadow: var(--shadow); }
+.volunteer-form h2 { font-size: clamp(42px,5vw,68px); margin-bottom: 8px; }
+.volunteer-form label { display: grid; gap: 7px; color: var(--nss-green); font-size: 13px; font-weight: 800; }
+.volunteer-form label > span { color: var(--muted); font-weight: 500; }
+.volunteer-form input:not([type="checkbox"]), .volunteer-form select { width: 100%; min-height: 47px; border: 1px solid rgba(7,59,34,.22); border-radius: 11px; background: #fff; color: var(--ink); font: inherit; padding: 10px 12px; }
+.volunteer-form .consent { grid-template-columns: auto 1fr; align-items: start; gap: 10px; color: var(--muted); font-weight: 500; }
+.volunteer-form .consent input { margin-top: 4px; }
+.id-card-panel { min-width: 0; }
+.id-card-panel[hidden] { display: none; }
+.volunteer-id-card { overflow: hidden; border-radius: 24px; background: linear-gradient(140deg,#073b22,#0b6b3b); box-shadow: 0 25px 58px rgba(7,59,34,.27); color: #fff; }
+.id-card-top { display: flex; align-items: center; gap: 11px; padding: 22px; background: rgba(0,0,0,.14); font-size: 24px; font-weight: 900; }
+.id-card-top img { width: 46px; height: 46px; border-radius: 50%; }
+.id-card-top small { display: block; color: #c7e8cb; font-size: 9px; letter-spacing: .16em; }
+.id-card-profile { display: flex; align-items: center; gap: 18px; padding: 32px 24px; }
+.id-card-initials { display: grid; flex: 0 0 auto; width: 84px; height: 84px; place-items: center; border: 4px solid rgba(255,255,255,.72); border-radius: 50%; background: var(--nss-lime); color: var(--nss-green); font-size: 26px; font-weight: 900; }
+.id-card-profile strong, .id-card-profile span { display: block; }
+.id-card-profile strong { font-size: clamp(25px,3vw,38px); letter-spacing: -.05em; line-height: 1; }
+.id-card-profile span { margin-top: 8px; color: #d1f7ba; font-size: 12px; font-weight: 800; letter-spacing: .06em; }
+.id-card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.18); }
+.id-card-meta span { display: grid; gap: 4px; padding: 14px 20px; background: rgba(0,0,0,.12); color: #c8e9c8; font-size: 9px; font-weight: 900; letter-spacing: .11em; }
+.id-card-meta b { overflow-wrap: anywhere; color: #fff; font-size: 13px; letter-spacing: 0; }
+.id-card-status { padding: 15px 20px; background: var(--nss-lime); color: var(--nss-green); font-size: 9px; font-weight: 900; letter-spacing: .1em; text-align: center; }
+.id-card-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+@media (max-width: 900px) { .site-header .menu-btn { display: block; } .site-header .nav { grid-column: 1 / -1; justify-self: stretch; } .team-flip-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .volunteer-layout { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .team-flip-grid { grid-template-columns: 1fr; } .team-flip, .team-flip-toggle, .team-flip-inner { min-height: 308px; } .privacy-panel { flex-direction: column; } .id-card-meta { grid-template-columns: 1fr; } }
+@media print { body * { visibility: hidden; } .id-card-panel, .id-card-panel * { visibility: visible; } .id-card-panel { position: absolute; inset: 0; width: 100%; padding: 20mm; } .volunteer-id-card { max-width: 88mm; box-shadow: none; } .id-card-actions { display: none; } }
+
 .nss-home-slides {
   position: absolute;
   inset: 0;
