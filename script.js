@@ -151,6 +151,44 @@ document.querySelectorAll('[data-team-flip]').forEach((card) => {
   });
 });
 
+/* Flip each team card as soon as a mouse cursor enters it; tap remains available on phones. */
+document.querySelectorAll('.team-flip').forEach((card) => {
+  card.addEventListener('pointerenter', (event) => {
+    if (event.pointerType !== 'touch') card.classList.add('is-auto-flipped');
+  });
+  card.addEventListener('pointerleave', () => card.classList.remove('is-auto-flipped'));
+});
+
+/*
+ * Team photo file map. Upload the exact filename inside assets/team/.
+ * A card keeps its initials until its matching photograph is available.
+ */
+const teamPhotoFiles = {
+  'Dr. Tajinder Singh': 'assets/team/dr-tajinder-singh.jpg',
+  'Kitanshu': 'assets/team/kitanshu.jpg',
+  'Isha': 'assets/team/isha.jpg',
+  'Annu': 'assets/team/annu.jpg',
+  'Himanshu': 'assets/team/himanshu.jpg',
+  'Aditya Kumar': 'assets/team/aditya-kumar.jpg',
+  'Somesh': 'assets/team/somesh.jpg',
+  'Ajit Kumar': 'assets/team/ajit-kumar.jpg',
+  'Dr. Vinod Kumar Meena': 'assets/team/dr-vinod-kumar-meena.jpg'
+};
+
+document.querySelectorAll('.team-flip').forEach((card) => {
+  const name = card.querySelector('.team-front strong')?.textContent?.trim();
+  const portrait = card.querySelector('.team-portrait');
+  const source = teamPhotoFiles[name];
+  if (!portrait || !source) return;
+
+  const photo = new Image();
+  photo.src = source;
+  photo.alt = '';
+  photo.className = 'team-portrait-photo';
+  photo.addEventListener('error', () => photo.remove());
+  portrait.prepend(photo);
+});
+
 /* Shared social links. */
 const socialStylesheet = document.createElement('link');
 socialStylesheet.rel = 'stylesheet';
