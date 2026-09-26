@@ -209,12 +209,12 @@ socialDock.innerHTML = `
     Instagram ↗
   </a>
   <a
-    href="https://www.linkedin.com/company/nss-sliet/"
+    href="https://sliet.ac.in/nss/"
     target="_blank"
     rel="noopener"
     aria-label="NSS SLIET LinkedIn"
   >
-    NSS LinkedIn ↗
+    OFFICIAL NSS ↗
   </a>
 `;
 
