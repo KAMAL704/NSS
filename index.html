@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="enhancements.css" />
   <link rel="stylesheet" href="css/modern.css" />
   <link rel="stylesheet" href="css/nss-greenery.css" />
+  <link rel="stylesheet" href="css/event-popup.css" />
 </head>
 <body class="nss-greenery">
   <div class="nss-nature-layer" aria-hidden="true">
@@ -330,7 +331,84 @@
     </div>
   </footer>
 
+  <!-- NSS Day Event Announcement Pop-up Screen -->
+  <div id="nssEventPopup" class="nss-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="nssPopupTitle" aria-hidden="true">
+    <div class="nss-popup-card">
+      <!-- Cross Tab Button to Cut/Close the Pop-up -->
+      <button id="nssPopupCloseBtn" class="nss-popup-close-btn" type="button" aria-label="Close event announcement" title="Close announcement">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <!-- Event Photo & Badge -->
+      <div class="nss-popup-media">
+        <img src="assets/photos/nss-day.jpg" alt="NSS SLIET volunteers celebrating NSS Day" loading="eager" />
+        <div class="nss-popup-media-overlay"></div>
+        <div class="nss-popup-badge">
+          <span class="nss-popup-badge-dot"></span>
+          <span>Event Announcement</span>
+        </div>
+      </div>
+
+      <!-- Event Information Content -->
+      <div class="nss-popup-body">
+        <div class="nss-popup-kicker">National Service Scheme · SLIET Longowal</div>
+        <h2 id="nssPopupTitle" class="nss-popup-title">
+          Celebrating <em>NSS Day</em>
+        </h2>
+        <p class="nss-popup-desc">
+          Honouring the spirit of voluntary youth service, leadership, and nation-building under the motto <em>"Not Me, But You"</em>. Join us as the NSS SLIET community unites for an impactful day of service, fellowship, and celebration.
+        </p>
+
+        <!-- Quick Event Details -->
+        <div class="nss-popup-meta">
+          <div class="nss-popup-meta-item">
+            <span class="nss-popup-meta-icon" aria-hidden="true">📅</span>
+            <div class="nss-popup-meta-text">
+              <strong>24th September 2026</strong>
+              <span>Annual NSS Day</span>
+            </div>
+          </div>
+          <div class="nss-popup-meta-item">
+            <span class="nss-popup-meta-icon" aria-hidden="true">📍</span>
+            <div class="nss-popup-meta-text">
+              <strong>Campus Auditorium</strong>
+              <span>SLIET Longowal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Highlights -->
+        <div class="nss-popup-highlights">
+          <div class="nss-popup-highlights-title">Key Event Highlights</div>
+          <div class="nss-popup-tags">
+            <span class="nss-popup-tag">🩸 Blood Donation Camp</span>
+            <span class="nss-popup-tag">🌱 Cleanliness Drive</span>
+            <span class="nss-popup-tag">🏅 Jagrukta Event</span>
+            <span class="nss-popup-tag">🎭 Villagee Camp</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="nss-popup-actions">
+          <a id="nssPopupPrimaryBtn" class="nss-popup-btn-primary" href="events.html">
+            Explore Events &amp; Schedule &rarr;
+          </a>
+          <button id="nssPopupDismissBtn" class="nss-popup-btn-secondary" type="button">
+            Continue to Website
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Re-open Floating Button (Allows users to view the announcement anytime) -->
+  <button id="nssPopupReopenBtn" class="nss-popup-reopen-btn" type="button" aria-label="Open NSS Day Event Announcement">
+    <span>🎉</span>
+    <span>NSS Day Event</span>
+  </button>
+
   <script src="script.js"></script>
   <script src="js/nss-motion.js"></script>
+  <script src="js/event-popup.js"></script>
 </body>
 </html>
